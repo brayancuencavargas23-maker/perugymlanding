@@ -28,12 +28,12 @@ Promise.all([
 ]).then(([cfg, plans]) => {
 
   // ── Imágenes del landing ──
-  if (cfg.logo_url) {
+  if (cfg.logo_url && !document.getElementById('nav-logo-img').src) {
     document.getElementById('nav-logo-img').src = cloudinaryOpt(cfg.logo_url, 120);
     document.getElementById('nav-logo-img').style.display = 'block';
     document.getElementById('nav-logo-text').style.display = 'none';
   }
-  if (cfg.about_logo_url) {
+  if (cfg.about_logo_url && !document.querySelector('.about-logo-overlay img')) {
     const overlay = document.querySelector('.about-logo-overlay');
     if (overlay) {
       overlay.innerHTML = `<img src="${cloudinaryOpt(cfg.about_logo_url, 200)}" alt="Peru Gym" loading="lazy" style="width:100%;height:100%;object-fit:contain;border-radius:50%;padding:16px">`;
