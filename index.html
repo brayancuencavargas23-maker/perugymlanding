@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Básico -->
+  <title>Peru Gym - Gimnasio en Perú | Más Fuerte Cada Día</title>
+  <meta name="description" content="Peru Gym es el mejor gimnasio del Perú. Equipos de primera, entrenadores certificados y planes adaptados a tus objetivos. Únete y transforma tu cuerpo.">
+  <meta name="keywords" content="gimnasio, gym, fitness, entrenamiento, musculación, cardio, Perú, Lima, planes de gym, membresía, Peru Gym">
+  <meta name="author" content="Peru Gym">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://localhost/Perugymweb/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost/Perugymweb/">
+  <meta property="og:title" content="Peru Gym - Gimnasio en Perú | Más Fuerte Cada Día">
+  <meta property="og:description" content="El mejor gimnasio del Perú. Equipos de primera, entrenadores certificados y planes adaptados a tus objetivos.">
+  <meta property="og:image" content="http://localhost/Perugymweb/imagenes/index/hero-bg.jpg">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Peru Gym">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Peru Gym - Gimnasio en Perú | Más Fuerte Cada Día">
+  <meta name="twitter:description" content="El mejor gimnasio del Perú. Equipos de primera, entrenadores certificados y planes adaptados a tus objetivos.">
+  <meta name="twitter:image" content="http://localhost/Perugymweb/imagenes/index/hero-bg.jpg">
+
+  <!-- JSON-LD Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HealthClub",
+    "name": "Peru Gym",
+    "description": "Gimnasio con equipos de primera, entrenadores certificados y planes adaptados a cada objetivo.",
+    "url": "http://localhost/Perugymweb/",
+    "logo": "http://localhost/Perugymweb/imagenes/index/logo.png",
+    "image": "http://localhost/Perugymweb/imagenes/index/hero-bg.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "PE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -12.0464,
+      "longitude": -77.0428
+    },
+    "priceRange": "$$",
+    "openingHours": "Mo-Su 06:00-22:00",
+    "sameAs": [],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Planes de Membresía",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Plan Básico"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Plan Pro"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Plan Premium"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <div class="logo-circle" id="nav-logo-wrap">
+        <img id="nav-logo-img" src="" alt="Peru Gym" style="display:none;width:100%;height:100%;object-fit:contain;border-radius:50%">
+        <span id="nav-logo-text">PERU<br>GYM</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#planes">Planes</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#planes" class="btn-red">Únete ahora</a>
+    </div>
+    <button class="hamburger-nav" id="hamburger-nav" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Más Fuerte<span>Cada Día</span></h1>
+      <p class="hero-subtitle">Tu mejor versión, <em>nuestro compromiso</em></p>
+      <p class="hero-desc">
+        En Peru Gym tenemos todo lo que necesitas para transformar
+        tu cuerpo y tu mente. Entrena con los mejores equipos,
+        entrenadores y una comunidad que te impulsa.
+      </p>
+      <div class="hero-btns">
+        <a href="#planes" class="btn-hero-primary">Únete ahora</a>
+        <a href="#nosotros" class="btn-hero-outline">
+          <span class="play-icon"><i class="fas fa-play"></i></span> Ver más
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES BAR -->
+  <div class="features-bar">
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-dumbbell"></i>
+        </div>
+        <div>
+          <div class="feature-title">Equipos<br>de Primera</div>
+          <div class="feature-desc">Tecnología de punta para tu entrenamiento.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-id-card"></i>
+        </div>
+        <div>
+          <div class="feature-title">Entrenadores<br>Certificados</div>
+          <div class="feature-desc">Expertos que te guían en cada paso.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div>
+          <div class="feature-title">Planes para<br>Cada Objetivo</div>
+          <div class="feature-desc">Baja de peso, gana masa o mejora tu rendimiento.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div>
+          <div class="feature-title">Comunidad<br>que Motiva</div>
+          <div class="feature-desc">Un ambiente que te inspira a seguir.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="nosotros" style="background:var(--dark);position:relative;overflow:hidden">
+    <img src="imagenes/decoracion.svg" alt="" class="about-decorative-svg" aria-hidden="true">
+    <div class="about">
+      <div>
+        <div class="section-tag">Sobre Nosotros</div>
+        <h2>Somos más que<span>un Gym</span></h2>
+        <p>
+          En Peru Gym no solo entrenas tu cuerpo, construyes
+          disciplina, confianza y una mejor versión de ti.
+        </p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Sede en todo el Perú</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">+10K</div>
+            <div class="stat-label">Miembros activos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">+20</div>
+            <div class="stat-label">Clases grupales por semana</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-images">
+        <img
+          class="about-img-main"
+          id="about-img"
+          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80"
+          alt="Peru Gym entrenamiento"
+        >
+        <div class="about-logo-overlay">
+          <span>PERU<br>GYM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="plans-section" id="planes">
+    <div class="plans-header">
+      <div class="section-tag">Planes</div>
+      <h2>Elige tu plan, logra <span>tu mejor versión</span></h2>
+    </div>
+    <div class="plans-grid" id="plans-grid">
+      <div style="grid-column:1/-1;text-align:center;color:#666;padding:40px">Cargando planes...</div>
+    </div>
+  </section>
+
+  <!-- FAQ - PREGUNTAS FRECUENTES -->
+  <section class="faq-section" id="faq">
+    <div class="faq-container">
+      <div class="faq-header">
+        <div class="section-tag">Preguntas Frecuentes</div>
+        <h2>Tu duda, <span>resuelta</span></h2>
+      </div>
+
+      <details class="faq-item" open>
+        <summary>
+          <span>¿Cuáles son los horarios de atención?</span>
+          <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+        </summary>
+        <div class="faq-answer">
+          Nuestro gimnasio abre de lunes a domingo de 6:00 a.m. a 10:00 p.m. 
+          Los feriados especiales mantienen horario reducido de 8:00 a.m. a 2:00 p.m. 
+          Consulta nuestras redes sociales para cambios de horario en temporadas especiales.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>¿Los planes incluyen asesoría nutricional o de entrenadores?</span>
+          <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+        </summary>
+        <div class="faq-answer">
+          Sí, todos nuestros planes incluyen una primera asesoría con un entrenador certificado 
+          para diseñar tu rutina personalizada. Los planes Pro y Premium incluyen asesoría 
+          nutricional mensual y seguimiento continuo de tu progreso.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>¿Qué implementos debo llevar para mi primer día?</span>
+          <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+        </summary>
+        <div class="faq-answer">
+          Para tu primera visita te recomendamos llevar: ropa deportiva cómoda, zapatillas de 
+          entrenamiento, toalla pequeña, botella de agua y una identificación con foto. 
+          Nosotros te proporcionamos el equipo de entrenamiento básico.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>¿Puedo congelar mi membresía en caso de viaje o enfermedad?</span>
+          <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+        </summary>
+        <div class="faq-answer">
+          Sí, puedes congelar tu membresía por un máximo de 30 días al año sin costo adicional. 
+          Solo necesitas avisar con 48 horas de anticipación a través de nuestro WhatsApp o 
+          directamente en recepción. Para periodos más largos, consulta nuestras opciones especiales.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT - UBICACIÓN Y CONTACTO -->
+  <section class="contact-section" id="contacto">
+    <div class="contact-container">
+      <div class="contact-header">
+        <div class="section-tag">Contacto</div>
+        <h2>Encuéntranos <span>aquí</span></h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Mapa -->
+        <div class="contact-map-wrap">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8536884030566!2d-77.0428!3d-12.0464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAyJzQ3LjAiUyA3N8KwMDInMzQuMSJX!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe"
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Peru Gym">
+          </iframe>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4>Dirección</h4>
+              <p>Av. Principal 123, Lima, Perú</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4>Horarios</h4>
+              <p>Lunes a Domingo: 6:00 a.m. - 10:00 p.m.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4>Teléfono / WhatsApp</h4>
+              <p>+51 987 654 321</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4>Email</h4>
+              <p>contacto@perugym.com</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-share-alt"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4>Redes Sociales</h4>
+              <div class="contact-social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com" target="_blank" class="btn-location">
+            <i class="fas fa-directions"></i> Cómo llegar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CORPORATIVO -->
+  <footer class="footer-corporate">
+    <div class="footer-grid">
+      <!-- Columna 1: Logo y eslogan -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-circle">
+            <span>PERU<br>GYM</span>
+          </div>
+          <div class="footer-logo-text">Peru <span>Gym</span></div>
+        </div>
+        <p class="footer-slogan">Más fuerte cada día. Tu mejor versión, nuestro compromiso.</p>
+      </div>
+
+      <!-- Columna 2: Enlaces rápidos -->
+      <div class="footer-col">
+        <h4>Enlaces Rápidos</h4>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Legal y Normas -->
+      <div class="footer-col">
+        <h4>Legal y Normas</h4>
+        <ul>
+          <li><a href="#">Políticas de Privacidad</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Reglamento Interno</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Transparencia -->
+      <div class="footer-col">
+        <h4>Transparencia</h4>
+        <a href="#" class="reclamaciones-link">
+          <i class="fas fa-book"></i> Libro de Reclamaciones
+        </a>
+        <a href="mailto:contacto@perugym.com" class="corporate-email">
+          <i class="fas fa-envelope"></i> contacto@perugym.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong>Peru Gym</strong>. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ── Estilos del modal ──────────────────────────────────────────────────── -->
+  <style>
+    /* Overlay */
+    #modal-solicitud {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeInOverlay 0.2s ease;
+    }
+    @keyframes fadeInOverlay { from { opacity:0 } to { opacity:1 } }
+
+    /* Card */
+    .sol-card {
+      background: #111214;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 460px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+      animation: slideUp 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes slideUp { from { opacity:0; transform:translateY(24px) scale(0.97) } to { opacity:1; transform:translateY(0) scale(1) } }
+
+    /* Header */
+    .sol-header {
+      background: linear-gradient(135deg, #c0392b 0%, #e63946 60%, #ff6b6b 100%);
+      padding: 22px 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sol-header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 120px; height: 120px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .sol-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 30px;
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .sol-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+    .sol-plan-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .sol-header h3 {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      letter-spacing: -0.3px;
+    }
+    .sol-header p {
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      margin: 0;
+    }
+    .sol-price-badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 6px 14px;
+      text-align: center;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    .sol-price-badge .amount {
+      display: block;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .sol-price-badge .period {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      font-size: 10px;
+      margin-top: 2px;
+    }
+    .sol-close-btn {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      z-index: 2;
+    }
+    .sol-close-btn:hover { background: rgba(255,255,255,0.25); }
+
+    /* Body */
+    .sol-body { padding: 24px; }
+
+    /* Field */
+    .sol-field { margin-bottom: 16px; }
+    .sol-field label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #8a8f98;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 7px;
+    }
+    .sol-field label .req { color: #e63946; }
+    .sol-field label .opt {
+      font-size: 10px;
+      font-weight: 400;
+      color: #555;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .sol-input-wrap { position: relative; }
+    .sol-input-wrap .sol-icon {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+      transition: color 0.15s;
+    }
+    .sol-input-wrap input {
+      width: 100%;
+      padding: 11px 14px 11px 40px;
+      background: #1a1c1f;
+      border: 1.5px solid #2a2d32;
+      border-radius: 10px;
+      color: #f0f0f0;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    .sol-input-wrap input::placeholder { color: #3d4147; }
+    .sol-input-wrap input:focus {
+      border-color: #e63946;
+      box-shadow: 0 0 0 3px rgba(230,57,70,0.12);
+    }
+    .sol-input-wrap input:focus + .sol-icon,
+    .sol-input-wrap input:focus ~ .sol-icon { color: #e63946; }
+    .sol-input-wrap input.is-valid { border-color: #22c55e; }
+    .sol-input-wrap input.is-valid:focus { box-shadow: 0 0 0 3px rgba(34,197,94,0.12); }
+    .sol-input-wrap input.is-error { border-color: #e63946; }
+    .sol-input-wrap input.is-error:focus { box-shadow: 0 0 0 3px rgba(230,57,70,0.12); }
+    .sol-input-wrap .sol-icon { pointer-events: none; }
+
+    /* Validation icon inside input */
+    .sol-val-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      display: none;
+    }
+
+    /* Error message */
+    .sol-err {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      color: #e63946;
+      font-size: 11px;
+      margin-top: 5px;
+      padding-left: 2px;
+    }
+    .sol-err.visible { display: flex; }
+
+    /* Divider */
+    .sol-divider {
+      border: none;
+      border-top: 1px solid #1e2024;
+      margin: 4px 0 18px;
+    }
+
+    /* Submit button */
+    .sol-btn {
+      width: 100%;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, #c0392b, #e63946);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(230,57,70,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .sol-btn:hover:not(:disabled) {
+      opacity: 0.92;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(230,57,70,0.45);
+    }
+    .sol-btn:active:not(:disabled) { transform: translateY(0); }
+    .sol-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .sol-btn .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .sol-btn.loading .spinner { display: block; }
+    .sol-btn.loading .btn-text { opacity: 0.7; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .sol-footer-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #444;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* ── Modal de éxito ── */
+    .sol-success {
+      display: none;
+      padding: 40px 28px 36px;
+      text-align: center;
+    }
+    .sol-success-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 32px rgba(34,197,94,0.3);
+      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+    }
+    @keyframes popIn { from { opacity:0; transform:scale(0.5) } to { opacity:1; transform:scale(1) } }
+    .sol-success-icon svg { color: #fff; }
+    .sol-success h3 {
+      color: #f0f0f0;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+    .sol-success p {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 0 8px;
+    }
+    .sol-success-name {
+      color: #e63946;
+      font-weight: 600;
+    }
+    .sol-success-steps {
+      background: #1a1c1f;
+      border: 1px solid #2a2d32;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 18px 0 24px;
+      text-align: left;
+    }
+    .sol-success-steps p {
+      font-size: 12px;
+      color: #6b7280;
+      margin: 0 0 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .sol-success-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+    .sol-success-step:last-child { margin-bottom: 0; }
+    .sol-step-num {
+      width: 22px; height: 22px;
+      background: rgba(230,57,70,0.15);
+      border: 1px solid rgba(230,57,70,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e63946;
+      flex-shrink: 0;
+    }
+    .sol-btn-close {
+      width: 100%;
+      padding: 12px;
+      background: #1a1c1f;
+      border: 1.5px solid #2a2d32;
+      border-radius: 10px;
+      color: #9ca3af;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .sol-btn-close:hover { border-color: #e63946; color: #e63946; }
+  </style>
+
+  <!-- ── Modal: Solicitud de membresía ──────────────────────────────────────── -->
+  <div id="modal-solicitud">
+    <div class="sol-card">
+
+      <!-- Header -->
+      <div class="sol-header">
+        <button class="sol-close-btn" onclick="cerrarSolicitud()" aria-label="Cerrar">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="sol-plan-tag">
+          <i class="fas fa-check" style="font-size:10px"></i>
+          Plan seleccionado
+        </div>
+        <div class="sol-header-top">
+          <div>
+            <h3 id="sol-modal-title">Quiero unirme</h3>
+            <p id="sol-modal-sub">Déjanos tus datos y te contactamos</p>
+          </div>
+          <div class="sol-price-badge">
+            <span class="amount" id="sol-price-display">S/ 0</span>
+            <span class="period">/mes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="sol-body" id="sol-form-wrap">
+        <input type="hidden" id="sol-plan-id">
+
+      <!-- Honeypot anti-bot -->
+        <input type="text" id="sol-website" name="website" tabindex="-1" autocomplete="off"
+          style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none"
+          aria-hidden="true">
+
+      <!-- DNI -->
+        <div class="sol-field">
+          <label>
+            <i class="fas fa-id-card" style="font-size:12px"></i>
+            DNI <span class="opt">(opcional)</span>
+          </label>
+          <div class="sol-input-wrap">
+            <span class="sol-icon">
+              <i class="fas fa-id-card" style="font-size:14px"></i>
+            </span>
+            <input type="text" id="sol-dni" placeholder="Ej: 46027897" maxlength="8" inputmode="numeric"
+              autocomplete="off" oninput="this.value=this.value.replace(/\D/g,'')">
+          </div>
+        </div>
+
+        <!-- Nombre -->
+        <div class="sol-field">
+          <label>
+            <i class="fas fa-user" style="font-size:12px"></i>
+            Nombre completo <span class="req">*</span>
+          </label>
+          <div class="sol-input-wrap">
+            <span class="sol-icon">
+              <i class="fas fa-user" style="font-size:14px"></i>
+            </span>
+            <input type="text" id="sol-nombre" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarCampo('nombre')">
+            <span class="sol-val-icon" id="sol-nombre-ok">✓</span>
+          </div>
+          <div class="sol-err" id="sol-nombre-err">
+            <i class="fas fa-exclamation-circle" style="font-size:11px"></i>
+            Ingresa tu nombre completo.
+          </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="sol-field">
+          <label>
+            <i class="fas fa-phone-alt" style="font-size:12px"></i>
+            Teléfono / WhatsApp <span class="req">*</span>
+          </label>
+          <div class="sol-input-wrap">
+            <span class="sol-icon">
+              <i class="fas fa-phone-alt" style="font-size:14px"></i>
+            </span>
+            <input type="tel" id="sol-telefono" placeholder="Ej: 987 654 321" autocomplete="tel" oninput="validarCampo('telefono')">
+            <span class="sol-val-icon" id="sol-telefono-ok">✓</span>
+          </div>
+          <div class="sol-err" id="sol-telefono-err">
+            <i class="fas fa-exclamation-circle" style="font-size:11px"></i>
+            <span id="sol-telefono-err-msg">Ingresa tu número de teléfono.</span>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="sol-field" style="margin-bottom:20px">
+          <label>
+            <i class="fas fa-envelope" style="font-size:12px"></i>
+            Email <span class="opt">(opcional)</span>
+          </label>
+          <div class="sol-input-wrap">
+            <span class="sol-icon">
+              <i class="fas fa-envelope" style="font-size:14px"></i>
+            </span>
+            <input type="email" id="sol-email" placeholder="tu@email.com" autocomplete="email" oninput="validarCampo('email')">
+            <span class="sol-val-icon" id="sol-email-ok">✓</span>
+          </div>
+          <div class="sol-err" id="sol-email-err">
+            <i class="fas fa-exclamation-circle" style="font-size:11px"></i>
+            Ingresa un email válido.
+          </div>
+        </div>
+
+        <hr class="sol-divider">
+
+        <!-- Botón enviar -->
+        <button class="sol-btn" id="sol-btn-enviar" onclick="enviarSolicitud()">
+          <div class="spinner"></div>
+          <span class="btn-text">Quiero que me contacten</span>
+          <i class="fas fa-arrow-right btn-arrow"></i>
+        </button>
+
+        <div class="sol-footer-note">
+          <i class="fas fa-lock" style="font-size:12px"></i>
+          Tus datos están seguros. Solo los usamos para contactarte.
+        </div>
+      </div>
+
+      <!-- Éxito -->
+      <div class="sol-success" id="sol-success-wrap">
+        <div class="sol-success-icon">
+          <i class="fas fa-check" style="font-size:32px"></i>
+        </div>
+        <h3>¡Solicitud recibida!</h3>
+        <p>Hola <span class="sol-success-name" id="sol-success-nombre"></span>, tu solicitud fue enviada correctamente.</p>
+        <p>Nuestro equipo se pondrá en contacto contigo a la brevedad.</p>
+
+        <div class="sol-success-steps">
+          <p>¿Qué sigue?</p>
+          <div class="sol-success-step">
+            <span class="sol-step-num">1</span>
+            Recibirás una llamada o mensaje de nuestro equipo.
+          </div>
+          <div class="sol-success-step">
+            <span class="sol-step-num">2</span>
+            Coordinaremos tu visita al gym para conocer las instalaciones.
+          </div>
+          <div class="sol-success-step">
+            <span class="sol-step-num">3</span>
+            Realizas el pago en sede y activas tu membresía ese mismo día.
+          </div>
+        </div>
+
+        <button class="sol-btn-close" onclick="cerrarSolicitud()">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/landing.js?v=2.0"></script>
+
+</body>
+</html>
