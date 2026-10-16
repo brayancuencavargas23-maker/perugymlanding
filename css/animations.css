@@ -1,0 +1,98 @@
+/* Fuerza con propósito: short, deliberate motion. */
+:root {
+  --motion-fast: 180ms;
+  --motion-control: 220ms;
+  --motion-reveal: 460ms;
+  --motion-ease: cubic-bezier(.2,.7,.2,1);
+}
+
+.button, .btn-plan, .plan-card, .text-link, .sol-close-btn,
+.sol-input-wrap input, .hamburger-nav span {
+  transition: transform var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast), border-color var(--motion-fast),
+    color var(--motion-fast);
+}
+.button [aria-hidden="true"]:not(.spinner), .text-link [aria-hidden="true"], .plan-arrow {
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+.plan-arrow { display: inline-block; }
+.faq-item summary span { transition: transform var(--motion-control) var(--motion-ease); }
+.faq-item[data-expanded="false"] summary span { transform: rotate(0); }
+.faq-item[data-expanded="true"] summary span { transform: rotate(45deg); }
+.button:active:not(:disabled), .btn-plan:active:not(:disabled) { transform: scale(.98); }
+.plan-card:focus-within { border-color: var(--red); }
+
+/* The dialog stays modal until its closing animation has completed. */
+#modal-solicitud { z-index: 11000; }
+.sol-card { transform-origin: 50% 40%; }
+#chat-toggle-btn:focus-visible { outline: 3px solid #d99520; outline-offset: 5px; }
+#chat-window {
+  transform: translateY(12px);
+  visibility: hidden;
+  transition: transform var(--motion-control) var(--motion-ease),
+    opacity var(--motion-control), visibility 0s var(--motion-control);
+}
+#chat-window.visible {
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+.chat-notif-dot { animation: none; }
+.chat-btn-icon { transition-duration: var(--motion-fast); }
+.chat-msg { animation-duration: var(--motion-control); }
+
+@media (hover: hover) and (pointer: fine) {
+  .plan-card:hover { transform: translateY(-4px); border-color: var(--red); }
+  .button:hover [aria-hidden="true"]:not(.spinner), .text-link:hover [aria-hidden="true"],
+  .btn-plan:hover .plan-arrow { transform: translate(3px, -2px); }
+  #chat-toggle-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px #0004; }
+}
+@media (hover: none) {
+  .button:hover, #chat-toggle-btn:hover { transform: none; }
+}
+@media (max-width: 900px) {
+  /* Visibility rather than display allows both directions to transition. */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition: opacity var(--motion-control), transform var(--motion-control) var(--motion-ease),
+      visibility 0s var(--motion-control);
+  }
+  .nav-links.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  .nav-overlay, .nav-overlay.visible {
+    display: block;
+    position: fixed;
+    inset: 76px 0 0;
+    z-index: 90;
+    background: #0008;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-control), visibility 0s var(--motion-control);
+  }
+  .nav-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .button:hover, .button:active, .btn-plan:active, .plan-card:hover,
+  #chat-toggle-btn:hover, .button:hover [aria-hidden="true"]:not(.spinner),
+  .text-link:hover [aria-hidden="true"], .btn-plan:hover .plan-arrow { transform: none !important; }
+}

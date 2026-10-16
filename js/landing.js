@@ -9,39 +9,36 @@ function cloudinaryOpt(url, width = 800) {
 }
 
 // ── Skeleton para planes mientras carga ───────────────────────────────────────
-document.getElementById('plans-grid').innerHTML = Array.from({ length: 3 }, () => `
-  <div style="background:#1a1a1a;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:320px">
-    <div style="height:22px;width:55%;border-radius:6px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite"></div>
-    <div style="height:14px;width:70%;border-radius:6px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite"></div>
-    <div style="height:36px;width:45%;border-radius:6px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite;margin:8px 0"></div>
-    <div style="height:12px;width:80%;border-radius:6px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite"></div>
-    <div style="height:12px;width:65%;border-radius:6px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite"></div>
-    <div style="height:12px;width:72%;border-radius:6px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite"></div>
-    <div style="height:44px;border-radius:8px;background:linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%);background-size:400px 100%;animation:_sk 1.4s ease-in-out infinite;margin-top:auto"></div>
-  </div>
-`).join('') + '<style>@keyframes _sk{0%{background-position:-400px 0}100%{background-position:400px 0}}</style>';
+document.getElementById('plans-grid').innerHTML = Array.from({ length: 3 }, () =>
+  '<div class="skeleton" aria-hidden="true"><span></span><span></span><span></span><span></span></div>'
+).join('');
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+async function fetchPublic(path) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 12000);
+  try {
+    const response = await fetch(`${API_BASE}${path}`, { signal: controller.signal });
+    if (!response.ok) throw new Error('Servicio no disponible');
+    return await response.json();
+  } finally { clearTimeout(timer); }
+}
 
 // ── Cargar landing e imágenes en paralelo ─────────────────────────────────────
 Promise.all([
-  fetch(`${API_BASE}/api/landing`).then(r => r.json()).catch(() => ({})),
-  fetch(`${API_BASE}/api/planes/public`).then(r => r.json()).catch(() => []),
+  fetchPublic('/api/landing').catch(() => ({})),
+  fetchPublic('/api/planes/public').catch(() => null),
 ]).then(([cfg, plans]) => {
 
   // ── Imágenes del landing ──
-  if (cfg.logo_url && !document.getElementById('nav-logo-img').src) {
-    document.getElementById('nav-logo-img').src = cloudinaryOpt(cfg.logo_url, 120);
-    document.getElementById('nav-logo-img').style.display = 'block';
-    document.getElementById('nav-logo-text').style.display = 'none';
-  }
-  if (cfg.about_logo_url && !document.querySelector('.about-logo-overlay img')) {
-    const overlay = document.querySelector('.about-logo-overlay');
-    if (overlay) {
-      overlay.innerHTML = `<img src="${cloudinaryOpt(cfg.about_logo_url, 200)}" alt="Peru Gym" loading="lazy" style="width:100%;height:100%;object-fit:contain;border-radius:50%;padding:16px">`;
-    }
-  }
   if (cfg.hero_bg_url) {
-    document.getElementById('hero-bg').style.backgroundImage =
-      `linear-gradient(to right, rgba(10,10,10,0.95) 45%, rgba(10,10,10,0.3) 100%), url('${cloudinaryOpt(cfg.hero_bg_url, 1400)}')`;
+    const hero = document.getElementById('hero-bg');
+    hero.src = cloudinaryOpt(cfg.hero_bg_url, 1100);
+    hero.srcset = [480, 800, 1100].map(w => `${cloudinaryOpt(cfg.hero_bg_url, w)} ${w}w`).join(', ');
+    hero.sizes = '(max-width:700px) calc(100vw - 40px), 600px';
   }
   if (cfg.about_img_url) {
     const aboutImg = document.getElementById('about-img');
@@ -51,25 +48,33 @@ Promise.all([
 
   // ── Planes ──
   const grid = document.getElementById('plans-grid');
-  if (!plans.length) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#666;padding:40px">Sin planes disponibles por el momento.</div>';
+  grid.setAttribute('aria-busy', 'false');
+  if (!Array.isArray(plans) || !plans.length) {
+    grid.innerHTML = `<div class="plans-status"><p>${plans === null ? 'No pudimos cargar los planes. Intenta nuevamente en unos minutos.' : 'Sin planes disponibles por el momento.'}</p><a href="#contacto">Consulta con nuestro equipo</a></div>`;
     return;
   }
-  grid.innerHTML = plans.map(p => {
+  grid.innerHTML = plans.map((p, index) => {
     const featured = p.destacado;
-    const features = p.caracteristicas || [];
+    const features = (Array.isArray(p.caracteristicas) ? p.caracteristicas : []).filter(f => !/todo en plan pro/i.test(f));
     return `
-      <div class="plan-card ${featured ? 'featured' : ''}">
-        ${featured ? '<div class="plan-badge">Más Popular</div>' : ''}
-        <div class="plan-name">${p.nombre}</div>
-        <div class="plan-sub">${p.descripcion || ''}</div>
+      <div class="plan-card ${featured ? 'featured' : ''}" data-reveal data-reveal-delay="${index * 70}">
+        ${featured ? '<div class="plan-badge">PLAN DESTACADO</div>' : ''}
+        <h3 class="plan-name">${escapeHtml(p.nombre)}</h3>
+        <div class="plan-sub">${escapeHtml(p.descripcion || '')}</div>
         <div class="plan-price"><sup>S/</sup> ${parseFloat(p.precio).toFixed(0)}<span>/mes</span></div>
         <ul class="plan-features">
-          ${features.map(f => `<li>${f}</li>`).join('')}
+          ${features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
         </ul>
-        <button onclick="abrirSolicitud('${p._id}','${p.nombre.replace(/'/g,"\\'")}',${parseFloat(p.precio).toFixed(0)})" class="btn-plan ${featured ? 'btn-plan-red' : 'btn-plan-outline'}">Elegir Plan</button>
+        <button data-plan="${escapeHtml(p._id)}" class="btn-plan ${featured ? 'btn-plan-red' : 'btn-plan-outline'}" aria-label="Elegir plan ${escapeHtml(p.nombre)}">Elegir este plan <span class="plan-arrow" aria-hidden="true">↗</span></button>
       </div>`;
   }).join('');
+  window.GymMotion?.register(grid);
+  grid.querySelectorAll('[data-plan]').forEach(button => {
+    button.addEventListener('click', () => {
+      const plan = plans.find(p => p._id === button.dataset.plan);
+      if (plan) abrirSolicitud(plan._id, plan.nombre, Number(plan.precio));
+    });
+  });
 });
 
 // ── Validación en tiempo real ─────────────────────────────────────────────────
@@ -79,6 +84,7 @@ function setFieldState(campo, state) {
   const ok     = document.getElementById('sol-' + campo + '-ok');
   if (!input) return;
   input.classList.remove('is-valid', 'is-error');
+  input.setAttribute('aria-invalid', state === 'error' ? 'true' : 'false');
   if (ok) { ok.style.display = 'none'; ok.style.color = '#22c55e'; }
   if (err) err.classList.remove('visible');
   if (state === 'valid') {
@@ -141,10 +147,16 @@ function validarCampo(campo) {
 }
 
 // ── Abrir modal ───────────────────────────────────────────────────────────────
+let solicitudTrigger;
+let solicitudClosing = false;
 function abrirSolicitud(planId, planNombre, planPrecio) {
+  if (solicitudClosing) return;
+  window.ChatBot?.close();
+  solicitudTrigger = document.activeElement;
+  document.getElementById('sol-send-error')?.remove();
   document.getElementById('sol-plan-id').value = planId;
   document.getElementById('sol-modal-title').textContent = planNombre;
-  document.getElementById('sol-modal-sub').textContent = 'Déjanos tus datos y te contactamos hoy';
+  document.getElementById('sol-modal-sub').textContent = 'Déjanos tus datos y te contactamos';
   document.getElementById('sol-price-display').textContent = 'S/ ' + planPrecio;
 
   ['nombre','telefono','email'].forEach(c => {
@@ -158,20 +170,46 @@ function abrirSolicitud(planId, planNombre, planPrecio) {
   const btn = document.getElementById('sol-btn-enviar');
   btn.disabled = false;
   btn.classList.remove('loading');
+  btn.querySelector('.btn-text').textContent = 'Quiero que me contacten';
 
   document.getElementById('sol-form-wrap').style.display = 'block';
   document.getElementById('sol-success-wrap').style.display = 'none';
 
   const modal = document.getElementById('modal-solicitud');
   modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden', 'false');
+  document.querySelector('main').inert = true;
+  document.querySelector('header').inert = true;
+  document.querySelector('footer').inert = true;
+  const chatToggle = document.getElementById('chat-toggle-btn');
+  if (chatToggle) chatToggle.inert = true;
   document.body.style.overflow = 'hidden';
 
-  setTimeout(() => document.getElementById('sol-nombre').focus(), 100);
+  document.getElementById('sol-nombre').focus({ preventScroll: true });
+  window.GymMotion?.animate(modal, [{ opacity: 0 }, { opacity: 1 }], { duration: 180 });
+  window.GymMotion?.animate(modal.querySelector('.sol-card'), [
+    { transform: 'translateY(16px) scale(.985)' }, { transform: 'translateY(0) scale(1)' }
+  ]);
 }
 
-function cerrarSolicitud() {
-  document.getElementById('modal-solicitud').style.display = 'none';
+async function cerrarSolicitud() {
+  const modal = document.getElementById('modal-solicitud');
+  if (modal.getAttribute('aria-hidden') === 'true' || solicitudClosing) return;
+  solicitudClosing = true;
+  modal.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
+  await window.GymMotion?.animate(modal.querySelector('.sol-card'), [
+    { opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(12px)' }
+  ], { duration: 180 });
+  modal.style.display = 'none';
+  document.querySelector('main').inert = false;
+  document.querySelector('header').inert = false;
+  document.querySelector('footer').inert = false;
+  const chatToggle = document.getElementById('chat-toggle-btn');
+  if (chatToggle) chatToggle.inert = false;
   document.body.style.overflow = '';
+  solicitudTrigger?.focus();
+  modal.setAttribute('aria-hidden', 'true');
+  solicitudClosing = false;
 }
 
 document.getElementById('modal-solicitud').addEventListener('click', function(e) {
@@ -180,10 +218,17 @@ document.getElementById('modal-solicitud').addEventListener('click', function(e)
 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') cerrarSolicitud();
+  if (e.key === 'Tab' && document.getElementById('modal-solicitud').getAttribute('aria-hidden') === 'false') {
+    const controls = [...document.querySelectorAll('#modal-solicitud button, #modal-solicitud input:not([type="hidden"])')].filter(el => el.offsetParent && el.tabIndex >= 0 && !el.disabled);
+    const first = controls[0], last = controls[controls.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
 });
 
 // ── Enviar solicitud ──────────────────────────────────────────────────────────
 async function enviarSolicitud() {
+  if (document.getElementById('sol-btn-enviar').disabled) return;
   const nombreOk   = validarCampo('nombre');
   const telefonoOk = validarCampo('telefono');
   const emailOk    = validarCampo('email');
@@ -234,6 +279,13 @@ async function enviarSolicitud() {
     document.getElementById('sol-success-nombre').textContent = nombre.split(' ')[0];
     document.getElementById('sol-form-wrap').style.display = 'none';
     document.getElementById('sol-success-wrap').style.display = 'block';
+    document.querySelector('#sol-success-wrap button').focus();
+    window.GymMotion?.animate(document.getElementById('sol-success-wrap'), [
+      { opacity: .4, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }
+    ]);
+    window.GymMotion?.animate(document.querySelector('.success-mark'), [
+      { transform: 'scale(.85)' }, { transform: 'scale(1)' }
+    ], { duration: 220 });
 
   } catch (err) {
     btn.disabled = false;
@@ -252,7 +304,7 @@ async function enviarSolicitud() {
     } else if (msg.toLowerCase().includes('email')) {
       setFieldState('email', 'error');
     } else if (msg.toLowerCase().includes('espera') || msg.toLowerCase().includes('intentos')) {
-      mostrarErrorEnvio('⏳ ' + msg);
+      mostrarErrorEnvio(msg);
     } else {
       mostrarErrorEnvio(msg || 'No se pudo enviar. Por favor intenta de nuevo.');
     }
@@ -264,6 +316,7 @@ function mostrarErrorEnvio(texto) {
   if (existing) existing.remove();
   const errDiv = document.createElement('div');
   errDiv.id = 'sol-send-error';
+  errDiv.setAttribute('role', 'alert');
   errDiv.style.cssText = 'background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#e63946;margin-top:12px;text-align:center;line-height:1.4';
   errDiv.textContent = texto;
   const btn = document.getElementById('sol-btn-enviar');
@@ -292,8 +345,11 @@ document.head.appendChild(shakeStyle);
   overlay.className = 'nav-overlay';
   overlay.setAttribute('aria-hidden', 'true');
   document.body.appendChild(overlay);
+  const mobileMenu = matchMedia('(max-width: 900px)');
+  menu.inert = mobileMenu.matches;
 
   function openMenu() {
+    menu.inert = false;
     menu.classList.add('open');
     btn.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
@@ -301,16 +357,19 @@ document.head.appendChild(shakeStyle);
     document.body.style.overflow = 'hidden';
     overlay.classList.add('visible');
     requestAnimationFrame(() => overlay.classList.add('active'));
+    menu.querySelector('a').focus();
   }
 
   function closeMenu() {
+    if (menu.contains(document.activeElement)) btn.focus({ preventScroll: true });
+    menu.inert = mobileMenu.matches;
     menu.classList.remove('open');
     btn.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'Abrir menú');
     document.body.style.overflow = '';
     overlay.classList.remove('active');
-    overlay.addEventListener('transitionend', () => overlay.classList.remove('visible'), { once: true });
+    overlay.classList.remove('visible');
   }
 
   btn.addEventListener('click', (e) => {
@@ -325,6 +384,12 @@ document.head.appendChild(shakeStyle);
   });
 
   document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && menu.classList.contains('open')) {
+      const links = [...menu.querySelectorAll('a')];
+      if (e.shiftKey && document.activeElement === links[0]) { e.preventDefault(); btn.focus(); }
+      else if (!e.shiftKey && document.activeElement === links[links.length - 1]) { e.preventDefault(); btn.focus(); }
+      else if (document.activeElement === btn) { e.preventDefault(); (e.shiftKey ? links[links.length - 1] : links[0]).focus(); }
+    }
     if (e.key === 'Escape' && menu.classList.contains('open')) {
       closeMenu();
       btn.focus();
@@ -333,5 +398,21 @@ document.head.appendChild(shakeStyle);
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 900 && menu.classList.contains('open')) closeMenu();
+    menu.inert = mobileMenu.matches && !menu.classList.contains('open');
   });
 })();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// A visible external destination remains available while the lazy map loads.
+const mapFrame = document.querySelector('.contact-grid iframe');
+const mapPanel = document.createElement('div');
+mapPanel.className = 'map-panel';
+mapFrame.before(mapPanel);
+mapPanel.append(mapFrame);
+const mapLink = document.createElement('a');
+mapLink.className = 'map-caption';
+mapLink.href = 'https://www.google.com/maps/search/?api=1&query=-6.759794093236814,-79.862904925542';
+mapLink.target = '_blank';
+mapLink.rel = 'noopener noreferrer';
+mapLink.innerHTML = '<span><i class="fas fa-location-dot" aria-hidden="true"></i> Encuentra tu próximo punto de partida</span><strong>Abrir Google Maps ↗</strong>';
+mapPanel.append(mapLink);
